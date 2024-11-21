@@ -18,14 +18,13 @@ export default function Home() {
 
   const totalSlides = 5;
 
-  const { currentImg, setCurrentImg, indicatorRotation, animateSlide } =
-    useSlider(
-      sliderImagesRef,
-      counterRef,
-      titlesRef,
-      prevSlidesRef,
-      totalSlides
-    );
+  const { currentImg, setCurrentImg, animateSlide } = useSlider(
+    sliderImagesRef,
+    counterRef,
+    titlesRef,
+    prevSlidesRef,
+    totalSlides
+  );
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     if (!sliderImagesRef.current || !slidePreviewRef.current) return;
