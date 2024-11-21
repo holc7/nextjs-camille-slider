@@ -1,8 +1,14 @@
-"use client";
+"use client"; // pages/index.tsx
 import { useEffect, useRef, useState, MouseEvent } from "react";
 import Head from "next/head";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
+import SliderNavigation from "./components/SliderNavigation";
+import SliderImages from "./components/SliderImages";
+import SliderTitle from "./components/SliderTitle";
+import SliderCounter from "./components/SliderCounter";
+import SliderPreview from "./components/SliderPreview";
+import SliderIndicators from "./components/SliderIndicators";
 
 export default function Home() {
   const sliderImagesRef = useRef<HTMLDivElement | null>(null);
@@ -165,71 +171,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles.css" />
       </Head>
-      <nav>
-        <a href="#" id="active">
-          Work
-        </a>
-        <a href="#">About</a>
-      </nav>
-
-      <div ref={sliderImagesRef} className="slider-images">
-        <div className="img">
-          <img src="/assets/img1.jpg" alt="" />
-        </div>
-      </div>
-
-      <div className="slider-title">
-        <div ref={titlesRef} className="slider-title-wrapper">
-          <p>The Revival Ensemble</p>
-          <p>Above The Canvas</p>
-          <p>Harmony in Every Note</p>
-          <p>Redefining Imagination</p>
-          <p>From Earth to Expression</p>
-        </div>
-      </div>
-
-      <div className="slider-counter">
-        <div ref={counterRef} className="counter">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
-          <p>5</p>
-        </div>
-        <div>
-          <p>&mdash;</p>
-        </div>
-        <div>
-          <p>5</p>
-        </div>
-      </div>
-
-      <div ref={slidePreviewRef} className="slider-preview">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <div
-            key={index}
-            ref={(el) => {
-              if (el) prevSlidesRef.current[index] = el;
-            }}
-            className={`preview ${index === 0 ? "active" : ""}`}
-          >
-            <img src={`/assets/img${index + 1}.jpg`} alt="" />
-          </div>
-        ))}
-      </div>
-
-      <div className="slider-indicators">
-        {[...Array(2)].map((_, i) => (
-          <p
-            ref={(el) => {
-              if (el) indicatorsRef.current[i] = el;
-            }}
-            key={i}
-          >
-            +
-          </p>
-        ))}
-      </div>
+      <SliderNavigation />
+      <SliderImages sliderImagesRef={sliderImagesRef} currentImg={currentImg} />
+      <SliderTitle titlesRef={titlesRef} />
+      <SliderCounter counterRef={counterRef} />
+      <SliderPreview
+        slidePreviewRef={slidePreviewRef}
+        prevSlidesRef={prevSlidesRef}
+      />
+      <SliderIndicators indicatorsRef={indicatorsRef} />
     </div>
   );
 }
