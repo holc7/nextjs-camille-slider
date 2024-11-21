@@ -1,6 +1,5 @@
 "use client";
 import { useRef, MouseEvent } from "react";
-import Head from "next/head";
 import Navigation from "./components/SliderNavigation";
 import SliderImages from "./components/SliderImages";
 import SliderTitle from "./components/SliderTitle";
