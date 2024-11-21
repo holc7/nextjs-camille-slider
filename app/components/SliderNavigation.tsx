@@ -1,5 +1,6 @@
-// components/SliderNavigation.tsx
-export default function SliderNavigation() {
+import React from "react";
+
+const Navigation = () => {
   return (
     <nav>
       <a href="#" id="active">
@@ -8,4 +9,6 @@ export default function SliderNavigation() {
       <a href="#">About</a>
     </nav>
   );
-}
+};
+
+export default Navigation;

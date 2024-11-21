@@ -1,14 +1,16 @@
-// components/SliderCounter.tsx
-import { MutableRefObject } from "react";
+import React from "react";
 
 interface SliderCounterProps {
-  counterRef: MutableRefObject<HTMLDivElement | null>;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function SliderCounter({ counterRef }: SliderCounterProps) {
+const SliderCounter = React.forwardRef<
+  HTMLDivElement,
+  Omit<SliderCounterProps, "ref">
+>((_, ref) => {
   return (
     <div className="slider-counter">
-      <div ref={counterRef} className="counter">
+      <div ref={ref} className="counter">
         <p>1</p>
         <p>2</p>
         <p>3</p>
@@ -23,4 +25,7 @@ export default function SliderCounter({ counterRef }: SliderCounterProps) {
       </div>
     </div>
   );
-}
+});
+
+SliderCounter.displayName = "SliderCounter";
+export default SliderCounter;

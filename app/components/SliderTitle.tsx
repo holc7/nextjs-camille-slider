@@ -1,14 +1,16 @@
-// components/SliderTitle.tsx
-import { MutableRefObject } from "react";
+import React from "react";
 
 interface SliderTitleProps {
-  titlesRef: MutableRefObject<HTMLDivElement | null>;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function SliderTitle({ titlesRef }: SliderTitleProps) {
+const SliderTitle = React.forwardRef<
+  HTMLDivElement,
+  Omit<SliderTitleProps, "ref">
+>((_, ref) => {
   return (
     <div className="slider-title">
-      <div ref={titlesRef} className="slider-title-wrapper">
+      <div ref={ref} className="slider-title-wrapper">
         <p>The Revival Ensemble</p>
         <p>Above The Canvas</p>
         <p>Harmony in Every Note</p>
@@ -17,4 +19,7 @@ export default function SliderTitle({ titlesRef }: SliderTitleProps) {
       </div>
     </div>
   );
-}
+});
+
+SliderTitle.displayName = "SliderTitle";
+export default SliderTitle;

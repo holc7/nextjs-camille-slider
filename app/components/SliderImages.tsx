@@ -1,20 +1,15 @@
 // components/SliderImages.tsx
-import { MutableRefObject } from "react";
+import React from "react";
 
-interface SliderImagesProps {
-  sliderImagesRef: MutableRefObject<HTMLDivElement | null>;
-  currentImg: number;
-}
-
-export default function SliderImages({
-  sliderImagesRef,
-  currentImg,
-}: SliderImagesProps) {
+const SliderImages = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div ref={sliderImagesRef} className="slider-images">
+    <div ref={ref} className="slider-images">
       <div className="img">
-        <img src={`/assets/img${currentImg}.jpg`} alt="" />
+        <img src="/assets/img1.jpg" alt="" />
       </div>
     </div>
   );
-}
+});
+
+SliderImages.displayName = "SliderImages";
+export default SliderImages;

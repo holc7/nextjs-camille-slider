@@ -1,13 +1,12 @@
-// components/SliderIndicators.tsx
-import { MutableRefObject } from "react";
+import React from "react";
 
 interface SliderIndicatorsProps {
-  indicatorsRef: MutableRefObject<HTMLParagraphElement[]>;
+  indicatorsRef: React.MutableRefObject<HTMLParagraphElement[]>;
 }
 
-export default function SliderIndicators({
+const SliderIndicators: React.FC<SliderIndicatorsProps> = ({
   indicatorsRef,
-}: SliderIndicatorsProps) {
+}) => {
   return (
     <div className="slider-indicators">
       {[...Array(2)].map((_, i) => (
@@ -22,4 +21,6 @@ export default function SliderIndicators({
       ))}
     </div>
   );
-}
+};
+
+export default SliderIndicators;

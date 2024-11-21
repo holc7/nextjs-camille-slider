@@ -1,22 +1,21 @@
-// components/SliderPreview.tsx
-import { MutableRefObject } from "react";
+import React from "react";
 
 interface SliderPreviewProps {
-  slidePreviewRef: MutableRefObject<HTMLDivElement | null>;
-  prevSlidesRef: MutableRefObject<HTMLDivElement[]>;
+  ref: React.RefObject<HTMLDivElement>;
+  prevSlidesRef: React.MutableRefObject<HTMLDivElement[]>;
 }
 
-export default function SliderPreview({
-  slidePreviewRef,
-  prevSlidesRef,
-}: SliderPreviewProps) {
+const SliderPreview = React.forwardRef<
+  HTMLDivElement,
+  Omit<SliderPreviewProps, "ref">
+>((props, ref) => {
   return (
-    <div ref={slidePreviewRef} className="slider-preview">
+    <div ref={ref} className="slider-preview">
       {Array.from({ length: 5 }).map((_, index) => (
         <div
           key={index}
           ref={(el) => {
-            if (el) prevSlidesRef.current[index] = el;
+            if (el) props.prevSlidesRef.current[index] = el;
           }}
           className={`preview ${index === 0 ? "active" : ""}`}
         >
@@ -25,4 +24,7 @@ export default function SliderPreview({
       ))}
     </div>
   );
-}
+});
+
+SliderPreview.displayName = "SliderPreview";
+export default SliderPreview;
